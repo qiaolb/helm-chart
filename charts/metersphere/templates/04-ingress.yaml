@@ -12,9 +12,7 @@ spec:
     - host: {{.Values.ingress.host}}
       http:
         paths:
-          - backend:
-              serviceName: metersphere-server
-              servicePort: 8081
+            {{ include "metersphere.ingress.service" . }}
 {{if .Values.ingress.https.enabled}}
   tls:
     - hosts:
