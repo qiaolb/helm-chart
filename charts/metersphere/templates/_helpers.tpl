@@ -12,3 +12,17 @@
     {{- print "extensions/v1beta1" -}}
   {{- end -}}
 {{- end -}}
+{{- define "metersphere.ingress.service" -}}
+   {{- if .Capabilities.APIVersions.Has "networking.k8s.io/v1" -}}
+    {{- println "- pathType: ImplementationSpecific" -}}
+    {{- println "              backend:" -}}
+    {{- println "                service:" -}}
+    {{- println "                  name: metersphere-server" -}}
+    {{- println "                  port:" -}}
+    {{- println "                    number: 8081" -}}
+  {{- else -}}
+    {{- println "- backend:" -}}
+    {{- println "                serviceName: metersphere-server" -}}
+    {{- println "                servicePort: 8081" -}}
+  {{- end -}}
+{{- end -}}
