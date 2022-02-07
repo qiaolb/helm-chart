@@ -12,11 +12,11 @@ spec:
     - host: {{.Values.ingress.host}}
       http:
         paths:
-            {{ include "metersphere.ingress.service" . }}
+{{ include "metersphere.ingress.service" . | indent 8 }}
 {{if .Values.ingress.https.enabled}}
   tls:
     - hosts:
         - {{.Values.ingress.host}}
       secretName: {{.Values.ingress.https.secretName}}
-{{ end }}      
+{{ end }}
 {{ end }}
